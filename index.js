@@ -5,7 +5,8 @@ const cookieParser = require("cookie-parser");
 const userRouter = require("./routes/userRoutes");
 const expenseRouter = require("./routes/expenseRoute");
 const swaggerUi = require("swagger-ui-express");
-const swaggerSpec = require("./config/swagger");
+const swaggerDocument = require("./swagger-output.json");
+
 require("dotenv").config();
 
 const PORT = process.env.PORT;
@@ -18,16 +19,7 @@ app.use(cookieParser());
 app.use("/user", userRouter);
 app.use("/expenses", expenseRouter);
 
-app.use(
-  "/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerSpec, {
-    explorer: true, // Allow API exploration
-    swaggerOptions: {
-      docExpansion: "none", // Optionally, control the display of API documentation
-    },
-  })
-);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.get("/", (req, res) => {
   res.send("Welcome to Expense Tracker App");
 });
