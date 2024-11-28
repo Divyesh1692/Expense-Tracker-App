@@ -37,15 +37,17 @@ app.use(
   "/api-docs",
   swaggerUi.serve,
   swaggerUi.setup(null, {
-    swaggerOptions: { url: "/swagger.json" },
+    swaggerOptions: {
+      url: "https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/swagger-ui-standalone-preset.js",
+    },
     explorer: true,
   })
 );
 app.get("/", (req, res) => {
   res.send("Welcome to Expense Tracker App");
 });
-
 dbConnect();
+
 // app.listen(PORT, () => {
 //   console.log("Listening....");
 // });
