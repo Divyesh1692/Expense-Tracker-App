@@ -19,14 +19,27 @@ app.use(cookieParser());
 app.use("/user", userRouter);
 app.use("/expenses", expenseRouter);
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/swagger.json", (req, res) => {
+  const dynamicSwaggerDoc = {
+    ...swaggerDocument,
+    host: req.get("host"),
+  };
+  res.json(dynamicSwaggerDoc);
+});
+
+// Swagger UI route
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(null, { swaggerOptions: { url: "/swagger.json" } })
+);
 app.get("/", (req, res) => {
   res.send("Welcome to Expense Tracker App");
 });
 
+dbConnect();
 app.listen(PORT, () => {
   console.log("Listening....");
-  dbConnect();
 });
 
 module.exports = app;
