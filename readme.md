@@ -2,6 +2,11 @@
 
 The **Expense Tracker App** is a web application for managing personal expenses. It allows users to track their daily expenses, categorize them, and analyze statistics related to their spending. The app also supports bulk upload of expenses via CSV files, and it includes an admin role for managing expenses and users.
 
+```
+Vercel Deployment Url : https://expense-tracker-app-beryl-pi.vercel.app/
+
+```
+
 ## Features
 
 - **User Registration and Authentication**: Users can sign up, log in, and log out. JWT-based authentication is used for securing the endpoints.
