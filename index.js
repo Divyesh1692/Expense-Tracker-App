@@ -20,10 +20,11 @@ app.use("/user", userRouter);
 app.use("/expenses", expenseRouter);
 
 app.use("/swagger.json", (req, res) => {
+  const host = process.env.BASE_URL || req.get("host");
   try {
     const dynamicSwaggerDoc = {
       ...swaggerDocument,
-      host: req.get("host"),
+      host: host,
     };
     res.json(dynamicSwaggerDoc);
   } catch (error) {
