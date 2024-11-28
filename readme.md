@@ -7,6 +7,10 @@ Vercel Deployment Url : https://expense-tracker-app-beryl-pi.vercel.app/
 
 ```
 
+## API Documentation
+
+The API documentation is available through [Swagger UI](http://localhost:5000/api-docs) when running the application locally.
+
 ## Features
 
 - **User Registration and Authentication**: Users can sign up, log in, and log out. JWT-based authentication is used for securing the endpoints.
