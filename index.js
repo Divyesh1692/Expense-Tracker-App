@@ -31,15 +31,18 @@ app.use("/swagger.json", (req, res) => {
 app.use(
   "/api-docs",
   swaggerUi.serve,
-  swaggerUi.setup(null, { swaggerOptions: { url: "/swagger.json" } })
+  swaggerUi.setup(null, {
+    swaggerOptions: { url: "/swagger.json" },
+    explorer: true,
+  })
 );
 app.get("/", (req, res) => {
   res.send("Welcome to Expense Tracker App");
 });
 
 dbConnect();
-app.listen(PORT, () => {
-  console.log("Listening....");
-});
+// app.listen(PORT, () => {
+//   console.log("Listening....");
+// });
 
 module.exports = app;
