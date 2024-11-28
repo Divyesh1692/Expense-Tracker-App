@@ -18,6 +18,7 @@ app.use(cookieParser());
 
 app.use("/user", userRouter);
 app.use("/expenses", expenseRouter);
+app.use("/swagger-ui", express.static(require.resolve("swagger-ui-dist")));
 
 app.use("/swagger.json", (req, res) => {
   let host = req.get("host") || process.env.BASE_URL;
