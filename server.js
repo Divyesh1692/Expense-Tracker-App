@@ -15,7 +15,7 @@ dbConnect();
 app.use("/user", userRouter);
 app.use("/expenses", expenseRouter);
 app.get("/", (req, res) => {
-  res.send("Welcome to E-Library Management System");
+  res.send("Welcome to Expense Tracker App");
 });
 
 // Vercel uses a serverless function, so we need to export the app as a function
