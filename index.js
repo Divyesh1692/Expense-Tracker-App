@@ -20,7 +20,7 @@ app.use("/user", userRouter);
 app.use("/expenses", expenseRouter);
 
 app.use("/swagger.json", (req, res) => {
-  const host = process.env.BASE_URL || req.get("host");
+  let host = req.get("host") || process.env.BASE_URL;
   try {
     const dynamicSwaggerDoc = {
       ...swaggerDocument,
@@ -38,9 +38,7 @@ app.use(
   "/api-docs",
   swaggerUi.serve,
   swaggerUi.setup(null, {
-    swaggerOptions: {
-      url: "https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/swagger-ui-standalone-preset.js",
-    },
+    swaggerOptions: { url: "/swagger.json" },
     explorer: true,
   })
 );
