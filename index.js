@@ -20,11 +20,16 @@ app.use("/user", userRouter);
 app.use("/expenses", expenseRouter);
 
 app.use("/swagger.json", (req, res) => {
-  const dynamicSwaggerDoc = {
-    ...swaggerDocument,
-    host: req.get("host"),
-  };
-  res.json(dynamicSwaggerDoc);
+  try {
+    const dynamicSwaggerDoc = {
+      ...swaggerDocument,
+      host: req.get("host"),
+    };
+    res.json(dynamicSwaggerDoc);
+  } catch (error) {
+    console.error("Error generating Swagger JSON", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 // Swagger UI route

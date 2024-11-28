@@ -329,6 +329,125 @@
           }
         }
       }
+    },"/expenses/allexpenses": {
+      "get": {
+        "summary": "Get All Expenses for Admin",
+        "description": "Fetches all expenses for admin, with optional filters and pagination. Requires admin role.",
+        "operationId": "getAllExpensesForAdmin",
+        "tags": ["Expenses"],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "type": "string",
+            "description": "Filter expenses by title"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "type": "string",
+            "description": "Filter expenses by category"
+          },
+          {
+            "name": "dateRange",
+            "in": "query",
+            "type": "string",
+            "description": "Filter expenses by date range, formatted as startDate,endDate"
+          },
+          {
+            "name": "paymentMethod",
+            "in": "query",
+            "type": "string",
+            "description": "Filter expenses by payment method"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "string",
+            "description": "Sort expenses by field and order, formatted as field,order (e.g., date,desc)"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "default": 1,
+            "description": "Page number for pagination"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "default": 10,
+            "description": "Limit number of expenses per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of expenses matching the query parameters",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Expense"
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied, user is not an admin"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Expense": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for an expense"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title or name of the expense"
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of the expense"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "The method used to make the payment (e.g., credit card, cash)"
+        },
+        "amount": {
+          "type": "number",
+          "format": "float",
+          "description": "The amount of the expense"
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "The date when the expense was incurred"
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "description": "Username of the user who created the expense"
+            },
+            "email": {
+              "type": "string",
+              "description": "Email of the user who created the expense"
+            }
+          }
+        }
+      }
     }
   }
 }
+
+
+
