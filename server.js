@@ -18,5 +18,9 @@ app.get("/", (req, res) => {
   res.send("Welcome to Expense Tracker App");
 });
 
+app.get("/test", (req, res) => {
+  res.send("Welcome to Expense Tracker App test");
+});
+
 // Vercel uses a serverless function, so we need to export the app as a function
 module.exports = app;
